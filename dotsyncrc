@@ -21,6 +21,7 @@ bashrc
 bash_profile
 bin:bin
 config
+gitconfig
 ssh
 vim
 ideavimrc
