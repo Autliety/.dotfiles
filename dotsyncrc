@@ -20,7 +20,9 @@ DOTFILES=.dotfiles
 bashrc
 bash_profile
 bin:bin
-vim:.vim
+ssh
+vim
+ideavimrc
 [endfiles]
 
 # hostname except options
@@ -28,6 +30,6 @@ vim:.vim
 # hostname                  type=masterhost, ANY or NONE        files=dotfile:tolink,another:tolink
 [hosts]
 Auly-Mac.local              git=NONE
-Clock.local                 git=Auly-Mac.local
+Clock.local                 git=NONE
 [endhosts]
 

@@ -19,8 +19,8 @@ export EDITOR='vim'
 alias ls='ls -F'
 alias la='ls -A'
 alias ll='ls -lha'
-alias cp='command cp -iv'
-alias mv='command mv -iv'
+alias cp='command cp -riv'
+alias mv='command mv -riv'
 alias ..='cd ..'
 # cd-pwd-ls
 function cd() {
@@ -46,7 +46,7 @@ function dl() {
         echo 'Move file to trashbin. Usage: dl <filename>...'
         return 1
     fi
-        command mv -fv $@ ~/.Trash
+        command mv -rfv $@ ~/.Trash
 }
 function ld() {
     if [ ! $1 ]; then
@@ -54,7 +54,7 @@ function ld() {
         return 1
     fi
     for f in $@; do
-        mv -iv ~/.Trash/$f ./
+        mv -riv ~/.Trash/$f ./
     done
 }
 # Setup proxy connection
