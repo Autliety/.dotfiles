@@ -27,6 +27,7 @@ vim:.vim
 #
 # hostname                  type=masterhost, ANY or NONE        files=dotfile:tolink,another:tolink
 [hosts]
-Clock.local                 git=NONE                
+Auly-Mac.local              git=NONE
+Clock.local                 git=Auly-Mac.local
 [endhosts]
 
