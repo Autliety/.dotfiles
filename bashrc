@@ -30,7 +30,7 @@ function cd() {
 }
 # Disable rm command
 function rm() { 
-    echo '[rm] is unsafe, has been disabled. '
+    echo '[rm] is disabled by some reason. '
     echo 'Please use [dl] instead. ' 
 }
 
