@@ -11,7 +11,7 @@ set history=512
 set clipboard=unnamed
 set nobackup
 set noswapfile
-set viminfo='1000,f1,<500,n.vim/viminfo
+set viminfo='1000,f1,<500,n~/.vim/viminfo
 
 " Color
 set number
