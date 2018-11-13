@@ -35,6 +35,8 @@ function rm() {
 }
 
 # Custom aliase and functions 
+# Misc
+alias cls='clear'
 # Update home and profiles
 alias refresh='source ~/.bash_profile'
 # Delete and restore files, instead of rm
