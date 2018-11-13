@@ -1,0 +1,32 @@
+#
+# dotsync : https://github.com/dotphiles/dotsync
+#
+# Config for dotsync
+#
+# Authors:
+#   Ben O'Hara <bohara@gmail.com>
+#
+
+# Location of your dotfiles in $HOME
+DOTFILES=.dotfiles
+
+# dotfiles to symlink
+#
+# srcfile:dstfile
+# dstfile will be '.$srcfile' by default (with path removed)
+#
+[files]
+#dotsyncrc
+bashrc
+bash_profile
+bin:bin
+vim:.vim
+[endfiles]
+
+# hostname except options
+#
+# hostname                  type=masterhost, ANY or NONE        files=dotfile:tolink,another:tolink
+[hosts]
+Clock.local                 git=NONE                
+[endhosts]
+

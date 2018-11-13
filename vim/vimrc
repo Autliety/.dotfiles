@@ -1,0 +1,69 @@
+" Language
+set helplang=cn
+set encoding=utf-8
+
+" Normal setting
+set nocompatible
+set shortmess=alI
+syntax on
+filetype plugin indent on
+set history=512
+set clipboard=unnamed
+set nobackup
+set noswapfile
+set viminfo='1000,f1,<500,n.vim/viminfo
+
+" Color
+set number
+set relativenumber
+set cursorline
+set ruler
+colorscheme molokai
+
+" Interface
+set laststatus=2
+set cmdheight=1
+set showcmd
+set showmatch
+set showmode
+set noerrorbells
+set novisualbell
+set mouse=a
+
+" Search
+set nowrapscan
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" Indent and TAB
+set autoindent
+set smartindent
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set backspace=indent,eol,start
+
+" Moving
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+inoremap <c-h> <left>
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-l> <right>
+inoremap <c-a> <c-o>A
+
+" Auto-completion
+inoremap ( ()<left>
+inoremap { {}<left>
+inoremap [ []<left>
+
+" Command keymap
+nnoremap Q gq
+noremap = +
+noremap + =
