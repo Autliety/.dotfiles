@@ -20,6 +20,7 @@ DOTFILES=.dotfiles
 bashrc
 bash_profile
 bin:bin
+config
 ssh
 vim
 ideavimrc

@@ -1,0 +1,40 @@
+quit
+ls
+config -h
+config
+config set -enable_https true
+config set -enable_https=true
+quit
+ls
+login
+ls
+d mac临时备份/
+ls
+cd ..
+ls
+quit
+ls
+cd ..
+ls
+quit
+ls
+cd 我的资源/
+ls
+help
+ls
+mv *ava* java
+ls
+cd java
+ls
+rm *.doc
+rm *.jpg
+rm *5年*
+ls
+d *0_zip
+d *0-.zip
+d *0?.zip
+ls
+d *0?.zip
+quit
+ls
+d *1?.zip
