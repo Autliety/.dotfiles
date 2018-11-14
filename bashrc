@@ -56,7 +56,7 @@ function ld() {
         return 1
     fi
     for f in $@; do
-        mv -riv ~/.Trash/$f ./
+        mv -iv ~/.Trash/$f ./
     done
 }
 # Setup proxy connection
