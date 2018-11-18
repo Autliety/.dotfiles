@@ -48,7 +48,7 @@ function dl() {
         echo 'Move file to trashbin. Usage: dl <filename>...'
         return 1
     fi
-        command mv -rfv $@ ~/.Trash
+        command mv -fv $@ ~/.Trash
 }
 function ld() {
     if [ ! $1 ]; then
