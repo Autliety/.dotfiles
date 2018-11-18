@@ -20,7 +20,7 @@ alias ls='ls -F'
 alias la='ls -A'
 alias ll='ls -lha'
 alias cp='command cp -riv'
-alias mv='command mv -riv'
+alias mv='command mv -iv'
 alias ..='cd ..'
 # cd-pwd-ls
 function cd() {
@@ -56,7 +56,7 @@ function ld() {
         return 1
     fi
     for f in $@; do
-        mv -iv ~/.Trash/$f ./
+        command mv -iv ~/.Trash/$f ./
     done
 }
 # Setup proxy connection
