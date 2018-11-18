@@ -19,7 +19,7 @@ export EDITOR='vim'
 alias ls='ls -F'
 alias la='ls -A'
 alias ll='ls -lha'
-alias cp='command cp -riv'
+alias cp='command cp -aiv'
 alias mv='command mv -iv'
 alias ..='cd ..'
 # cd-pwd-ls
