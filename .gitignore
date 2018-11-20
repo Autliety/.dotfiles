@@ -1,4 +1,5 @@
 .DS_Store
 vim/viminfo
+vim/.netrwhist
 ssh/known_hosts
 bin/idea
