@@ -24,6 +24,7 @@ gitconfig
 ssh
 vim
 ideavimrc
+m2
 [endfiles]
 
 # hostname except options
