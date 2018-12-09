@@ -8,20 +8,23 @@ if [ -f /etc/bashrc ]; then
 fi
 # Get user specific programs
 export PATH=$PATH:$HOME/bin
-# Edit bash interface
-export PS1_BAK='\[\e[33m\][\u@\h:\[\e[32m\]\W\[\e[33m\]]\$ \[\e[0m\]'
-export PS1=${PS1_BAK}
+# Set up basic colors on [ls]
 export CLICOLOR=true
 export LSCOLORS='gxfxcxdxbxegedabagacad'
+# Edit PS1 behavior
+export OPS1="\n\[\e[0;32m\][\A] \[\e[33m\]\u@\h: \[\e[31m\]\w\n\$ \[\e[0m\]"
+export PS1=$OPS1
 # Set vim as default editor
 export EDITOR='vim'
-# Edit commands behavior
+# aliases
 alias ls='ls -F'
 alias la='ls -A'
 alias ll='ls -lha'
 alias cp='command cp -aiv'
 alias mv='command mv -iv'
 alias ..='cd ..'
+alias cls='clear'
+alias refresh='source ~/.bash_profile'
 # cd-pwd-ls
 function cd() {
     command cd $@
@@ -33,12 +36,6 @@ function rm() {
     echo '[rm] is disabled by some reason. '
     echo 'Please use [dl] instead. ' 
 }
-
-# Custom aliase and functions 
-# Misc
-alias cls='clear'
-# Update home and profiles
-alias refresh='source ~/.bash_profile'
 # Delete and restore files, instead of rm
 function dl() {
     if [ ! -d $HOME/.Trash ]; then
@@ -63,18 +60,18 @@ function ld() {
 function proxy() {
     case $1 in 
         'off')
-            unset ALL_PROXY
-            export PS1=${PS1_BAK}
+            unset ALL_PROXY SSR_COUNTRY
+            export PS1=$OPS1
             ;;
         'ssr')
             export ALL_PROXY='socks5://localhost:1086'
-            curl ipinfo.io/geo
-            if [ $? -ne 0 ]; then
+            export SSR_COUNTRY=$(curl ipinfo.io/country)
+            if [ ! $SSR_COUNTRY ]; then
                 unset ALL_PROXY
                 return 1
             fi
-            echo ' CONNECTED'
-            export PS1='\[\e[33m\][\u@\h:\[\e[31m\]\W\[\e[33m\]]\$ \[\e[0m\]'
+            echo "SSR proxy connected. Country: $SSR_COUNTRY"
+            export PS1="\[\e[35m\]<SSR-$SSR_COUNTRY> $OPS1"
             ;;
         *)
             echo 'Usage: proxy [ ssr | off ] '
