@@ -8,12 +8,11 @@ if [ -f /etc/bashrc ]; then
 fi
 # Get user specific programs
 export PATH=$PATH:$HOME/bin
+# Edit PS1 behavior
+export PS1='\n\[\e[0;32m\][\A] \[\e[33m\]\u@\h: \[\e[31m\]\w \[\e[35m\]$(proxy ps1)$(__git_ps1) \[\e[0;32m\]\n\$\[\e[0m\] '
 # Set up basic colors on [ls]
 export CLICOLOR=true
 export LSCOLORS='gxfxcxdxbxegedabagacad'
-# Edit PS1 behavior
-export OPS1="\n\[\e[0;32m\][\A] \[\e[33m\]\u@\h: \[\e[31m\]\w\n\$ \[\e[0m\]"
-export PS1=$OPS1
 # Set vim as default editor
 export EDITOR='vim'
 # aliases
@@ -25,6 +24,9 @@ alias mv='command mv -iv'
 alias ..='cd ..'
 alias cls='clear'
 alias refresh='source ~/.bash_profile'
+
+# Include git-prompt setting 
+source /usr/local/etc/bash_completion.d/git-prompt.sh
 # cd-pwd-ls
 function cd() {
     command cd $@
@@ -60,18 +62,18 @@ function ld() {
 function proxy() {
     case $1 in 
         'off')
-            unset ALL_PROXY SSR_COUNTRY
-            export PS1=$OPS1
+            unset ALL_PROXY SSR_CON
             ;;
         'ssr')
             export ALL_PROXY='socks5://localhost:1086'
-            export SSR_COUNTRY=$(curl ipinfo.io/country)
-            if [ ! $SSR_COUNTRY ]; then
-                unset ALL_PROXY
+            export SSR_CON=$(curl ipinfo.io/country)
+            if [[ ! $SSR_CON ]]; then
+                unset ALL_PROXY SSR_CON
                 return 1
             fi
-            echo "SSR proxy connected. Country: $SSR_COUNTRY"
-            export PS1="\[\e[35m\]<SSR-$SSR_COUNTRY> $OPS1"
+            ;;
+        'ps1')
+            echo ${SSR_CON+" (ssr-${SSR_CON})"}
             ;;
         *)
             echo 'Usage: proxy [ ssr | off ] '
