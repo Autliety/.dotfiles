@@ -9,7 +9,7 @@ fi
 # Get user specific programs
 export PATH=$PATH:$HOME/bin
 # Edit PS1 behavior
-export PS1='\n\[\e[0;32m\][\A] \u\[\e[33m\]@\h: \[\e[31m\]\w \[\e[35m\]$(proxy ps1)$(__git_ps1) \[\e[0;32m\]\n\$\[\e[0m\] '
+export PS1='\n\[\e[0;32m\][\A] \u\[\e[33m\]@\h: \[\e[31m\]\w \[\e[35m\]$(proxy ps1)$(__git_ps1) \[\e[33m\]\n\$\[\e[0m\] '
 # Set up basic colors on [ls]
 export CLICOLOR=true
 export LSCOLORS='gxfxcxdxbxegedabagacad'
