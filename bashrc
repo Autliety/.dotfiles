@@ -80,4 +80,11 @@ function proxy() {
             ;;
     esac
 }
-
+# One-line homebrew update
+function newbrew() {
+    proxy ssr
+    brew update
+    brew upgrade
+    brew cask upgrade
+    proxy off
+}
