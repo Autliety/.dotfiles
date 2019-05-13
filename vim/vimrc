@@ -69,3 +69,8 @@ inoremap [ []<left>
 nnoremap Q gq
 noremap = +
 noremap + =
+nnoremap gh :noh<CR>
+nnoremap gw :w<CR>
+nnoremap gW :wa<CR>
+nnoremap gq :wq<CR>
+nnoremap gQ :wqa<CR>
