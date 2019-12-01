@@ -67,6 +67,7 @@ inoremap [ []<left>
 
 " Command keymap
 nnoremap Q gq
+nnoremap ; :
 noremap = +
 noremap + =
 nnoremap gh :noh<CR>
