@@ -31,6 +31,5 @@ ideavimrc
 # hostname                  type=masterhost, ANY or NONE        files=dotfile:tolink,another:tolink
 [hosts]
 Auly-Mac.local              git=NONE
-Clock-2.local                 git=NONE
 [endhosts]
 
