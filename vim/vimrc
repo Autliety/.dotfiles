@@ -1,10 +1,11 @@
 " Language
-set helplang=cn
+let $LANG='en'
+set langmenu=en
 set encoding=utf-8
+set helplang=cn
 
-" Normal setting
+" Standard Settings
 set nocompatible
-set shortmess=alI
 syntax on
 filetype plugin indent on
 set history=512
@@ -13,22 +14,19 @@ set nobackup
 set noswapfile
 set viminfo='1000,f1,<500,n~/.vim/viminfo
 
-" Color
+" UI Customize
+set shortmess=alI
 set number
 set relativenumber
 set cursorline
 set ruler
-colorscheme molokai
-
-" Interface
+set showtabline=2
 set laststatus=2
 set cmdheight=1
+set showmode
 set showcmd
 set showmatch
-set showmode
-set noerrorbells
-set novisualbell
-set mouse=a
+colorscheme molokai
 
 " Search
 set nowrapscan
@@ -37,7 +35,7 @@ set hlsearch
 set ignorecase
 set smartcase
 
-" Indent and TAB
+" Editor
 set autoindent
 set smartindent
 set expandtab
@@ -46,32 +44,53 @@ set softtabstop=4
 set shiftwidth=4
 set smarttab
 set backspace=indent,eol,start
+set splitbelow
+set splitright
 
-" Moving
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-nnoremap J 10j
-nnoremap K 10k
+" GUI Settings
+set noerrorbells
+set novisualbell
+set mouse=a
+set guioptions=a
+
+" Keymaps
+noremap <space> <Nop>
+let mapleader=" "
+
+noremap ; :
+noremap gh :noh<CR>
+noremap = +
+noremap + =
+noremap J 10j
+noremap K 10k
+noremap <c-h> <c-w>h
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
+
 inoremap <c-h> <left>
 inoremap <c-j> <down>
 inoremap <c-k> <up>
 inoremap <c-l> <right>
-inoremap <c-a> <c-o>A
-
-" Auto-completion
 inoremap ( ()<left>
 inoremap { {}<left>
 inoremap [ []<left>
+inoremap <c-a> <c-o>A
 
-" Command keymap
-nnoremap Q gq
-nnoremap ; :
-noremap = +
-noremap + =
-nnoremap gh :noh<CR>
-nnoremap gw :w<CR>
-nnoremap gW :wa<CR>
-nnoremap gq :wq<CR>
-nnoremap gQ :wqa<CR>
+noremap <leader>ww :w<CR>
+noremap <leader>wq :wq<CR>
+noremap <leader>qq :q!<CR>
+
+noremap <leader>wn :$tabnew<CR>
+noremap <leader>wl :tabnext<CR>
+noremap <leader>wh :tabprevious<CR>
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 10gt
