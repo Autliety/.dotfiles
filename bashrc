@@ -7,7 +7,7 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 # Get user specific programs
-export PATH=$PATH:$HOME/bin
+export PATH=/usr/local/sbin:$HOME/bin:$PATH
 # Edit PS1 behavior
 export PS1='\n\[\e[0;32m\][\A] \u\[\e[33m\]@\h: \[\e[31m\]\w \[\e[35m\]$(proxy ps1)$(__git_ps1) \[\e[33m\]\n\$\[\e[0m\] '
 # Set up basic colors on [ls]
@@ -62,27 +62,36 @@ function ld() {
 function proxy() {
     case $1 in 
         'off')
-            unset ALL_PROXY SSR_CON
+            unset ALL_PROXY HTTP_PROXY HTTPS_PROXY SSR_CON
             ;;
-        'ssr')
-            export ALL_PROXY='socks5://localhost:1086'
+        'socks')
+            export ALL_PROXY='socks5://localhost:1080'
             export SSR_CON=$(curl ipinfo.io/country)
             if [[ ! $SSR_CON ]]; then
-                unset ALL_PROXY SSR_CON
+                 unset ALL_PROXY SSR_CON
+                return 1
+            fi
+            ;;
+        'http')
+            export HTTP_PROXY='http://localhost:1087'
+            export HTTPS_PROXY='http://localhost:1087'
+            export SSR_CON=$(curl ipinfo.io/country)
+            if [[ ! $SSR_CON ]]; then
+                unset HTTP_PROXY HTTPS_PROXY SR_CON
                 return 1
             fi
             ;;
         'ps1')
-            echo ${SSR_CON+" (ssr-${SSR_CON})"}
+            echo ${SSR_CON+" (prx-${SSR_CON})"}
             ;;
         *)
-            echo 'Usage: proxy [ ssr | off ] '
+            echo 'Usage: proxy [ http | socks | off ] '
             ;;
     esac
 }
 # One-line homebrew update
 function newbrew() {
-    proxy ssr
+    proxy socks
     brew update
     brew upgrade
     brew cask upgrade
