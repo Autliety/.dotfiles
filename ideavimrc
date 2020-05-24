@@ -1,4 +1,5 @@
 source ~/.vim/vimrc
+set clipboard+=ideaput
 unmap {
 unmap [
 unmap (
