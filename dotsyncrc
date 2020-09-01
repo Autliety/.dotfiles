@@ -24,12 +24,6 @@ gitconfig
 ssh
 vim
 ideavimrc
-[endfiles]
 
-# hostname except options
-#
-# hostname                  type=masterhost, ANY or NONE        files=dotfile:tolink,another:tolink
-[hosts]
-Auly-Mac.local              git=NONE
-[endhosts]
+[endfiles]
 

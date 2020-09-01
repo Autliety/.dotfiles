@@ -1,5 +1,5 @@
 # .bashrc
-# Last updated by Auly at 2018/11/13
+# Last updated by Auly at 2020/6/8
 # branch: Master (macOS)
 
 # Get global definitions
@@ -22,6 +22,8 @@ alias ll='ls -lha'
 alias cp='command cp -aiv'
 alias mv='command mv -iv'
 alias ..='cd ..'
+
+alias vi='vim'
 alias cls='clear'
 alias refresh='source ~/.bash_profile'
 
@@ -62,27 +64,27 @@ function ld() {
 function proxy() {
     case $1 in 
         'off')
-            unset ALL_PROXY HTTP_PROXY HTTPS_PROXY SSR_CON
+            unset ALL_PROXY HTTP_PROXY HTTPS_PROXY prx_con
             ;;
         'socks')
             export ALL_PROXY='socks5://localhost:1080'
-            export SSR_CON=$(curl ipinfo.io/country)
-            if [[ ! $SSR_CON ]]; then
-                 unset ALL_PROXY SSR_CON
+            export prx_con=$(curl ipinfo.io/country)
+            if [[ ! $prx_con ]]; then
+                 unset ALL_PROXY prx_con
                 return 1
             fi
             ;;
         'http')
             export HTTP_PROXY='http://localhost:1087'
             export HTTPS_PROXY='http://localhost:1087'
-            export SSR_CON=$(curl ipinfo.io/country)
-            if [[ ! $SSR_CON ]]; then
+            export prx_con=$(curl ipinfo.io/country)
+            if [[ ! $prx_con ]]; then
                 unset HTTP_PROXY HTTPS_PROXY SR_CON
                 return 1
             fi
             ;;
         'ps1')
-            echo ${SSR_CON+" (prx-${SSR_CON})"}
+            echo ${prx_con+" (prx-${prx_con})"}
             ;;
         *)
             echo 'Usage: proxy [ http | socks | off ] '

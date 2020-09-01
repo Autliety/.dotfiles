@@ -1,15 +1,223 @@
-" Language
-let $LANG='en'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer: 
+"    Auly (whitefryfish@gmail.com)
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" No compatible to vi. To enable improvement functions
+set nocompatible
+
+" Sets how many lines of history VIM has to remember
+set history=512
+
+" Enable filetype plugins
+filetype plugin indent on
+
+" Set to auto read when a file is changed from the outside
+set autoread
+autocmd FocusGained,BufEnter * checktime
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM user interface
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set 7 lines to the cursor - when moving vertically using j/k
+set scrolloff=7
+
+" Avoid garbled characters in Chinese language windows OS
+let $LANG='en' 
 set langmenu=en
-set encoding=utf-8
 set helplang=cn
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+" Config the command Wild menu
+set wildmenu
+set wildignore=*.o,*~,*.pyc
+if has("win16") || has("win32")
+    set wildignore+=.git\*,.hg\*,.svn\*
+else
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+endif
+
+" Cursor ruler
+set ruler
+
+" Status line and command line
+set laststatus=2
+set statusline=\ %F%m%r%h\ %w\ @%r%{getcwd()}%h\ %=\ %n[%l:%c]
+set cmdheight=1
+
+" Hid the buffer when abandoned
+set hidden
+
+" Searching configuration
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch 
+
+" Lazy redraw for macros, performance improvement
+set lazyredraw 
+
+" Show and preview matching brackets when enter
+set showmatch 
+set matchtime=2
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+if has("gui_macvim")
+    autocmd GUIEnter * set vb t_vb=
+endif
+
+" Add a bit extra margin to the left
+set foldcolumn=1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set fileformats=unix,dos,mac
+
+" Enable syntax highlighting
+syntax enable 
+
+" Enable 256 colors palette in Gnome Terminal
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
+
+try
+    colorscheme molokai
+catch
+endtry
+
+set background=dark
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=emT
+    set t_Co=256
+endif
+
+" Turn backup off
+set nobackup
+set writebackup
+set noswapfile
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text editor
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use system clipboard
+set clipboard+=unnamed
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>
+
+" 2 space as tab
+set expandtab
+set smarttab
+set shiftwidth=2
+set tabstop=2
+
+" Linebreak
+set linebreak
+
+" Indent
+set autoindent
+set smartindent
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Keymaps
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Save and reload vimrc
+command Rev execute "source ~/.vim/vimrc"
+
+" Set <space> to map leader
+let mapleader = " "
+
+" Disable serching highlight
+map <silent> <leader><cr> :nohlsearch<cr>
+
+" Move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Buffer management
+map <leader>ww :w<cr>
+map <leader>wq :wq<cr>
+map <leader>qq :b #<cr>:bd #<cr>
+map <leader>qa :bufdo bd<cr>:q<cr>
+map <leader>l :bnext<cr>
+map <leader>h :bprevious<cr>
+
+" Tab management
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove 
+map <leader>tt :tabnext 
+
+" Let 'tl' toggle between last accessed tabs
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+autocmd TabLeave * let g:lasttab = tabpagenr()
+
+" Opens a new tab with the current buffer's path
+map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Specify the behavior when switching between buffers 
+try
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
+catch
+endtry
+
+" Return to last edit position when opening files
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Remap 0 to first non-blank character
+map 0 ^
+
+" Delete trailing white space on save for some filetypes
+fun! CleanTrailing()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanTrailing()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Toggle paste mode on and off
+map <leader>pp :setlocal paste!<cr>
 
 " Standard Settings
-set nocompatible
-syntax on
-filetype plugin indent on
-set history=512
-set clipboard=unnamed
 set nobackup
 set noswapfile
 set viminfo='1000,f1,<500,n~/.vim/viminfo
@@ -20,7 +228,6 @@ set number
 set relativenumber
 set cursorline
 set ruler
-set showtabline=2
 set laststatus=2
 set cmdheight=1
 set showmode
@@ -50,7 +257,7 @@ set splitright
 " GUI Settings
 set noerrorbells
 set novisualbell
-set mouse=a
+set mouse=n
 set guioptions=a
 
 " Keymaps
@@ -77,13 +284,8 @@ inoremap { {}<left>
 inoremap [ []<left>
 inoremap <c-a> <c-o>A
 
-noremap <leader>ww :w<CR>
-noremap <leader>wq :wq<CR>
-noremap <leader>qq :q!<CR>
 
-noremap <leader>wn :$tabnew<CR>
-noremap <leader>wl :tabnext<CR>
-noremap <leader>wh :tabprevious<CR>
+noremap <leader>nn :$tabnew<CR>
 noremap <leader>1 1gt
 noremap <leader>2 2gt
 noremap <leader>3 3gt
