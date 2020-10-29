@@ -19,14 +19,15 @@ DOTFILES=.dotfiles
 #dotsyncrc
 bashrc
 bash_profile
-bin:bin
+#bin:bin
 gitconfig
-ssh
+#ssh
 vim
-ideavimrc
+#ideavimrc
 
 [endfiles]
 
 [hosts]
 Auly-Mac        git=ANY
+auly-server	git=ANY
 [endhosts]
