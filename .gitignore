@@ -1,6 +1,10 @@
 .DS_Store
+
 vim/viminfo
 vim/.netrwhist
+
 ssh/known_hosts
+
+bin/*
+!bin/dotsync
 bin/idea
-m2/repository
