@@ -4,3 +4,6 @@
 [submodule "vim/pack/plugins/start/vimcdoc"]
 	path = vim/pack/plugins/start/vimcdoc
 	url = git://github.com/yianwillis/vimcdoc.git
+[submodule "dotsync"]
+	path = dotsync
+	url = https://github.com/dotphiles/dotsync.git

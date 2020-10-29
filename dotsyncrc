@@ -27,3 +27,6 @@ ideavimrc
 
 [endfiles]
 
+[hosts]
+Auly-Mac        git=ANY
+[endhosts]

@@ -6,5 +6,3 @@ vim/.netrwhist
 ssh/known_hosts
 
 bin/*
-!bin/dotsync
-bin/idea
